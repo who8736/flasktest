@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Hi, {{loginuser.nickname}}!</h1>
+    <p>这是一个示例模板</p>
+    {% for post in posts %}
+        <p>{{post.author.nickname}} says: <b>{{post.body}}</b></p>
+    {% endfor %}
+{% endblock %}

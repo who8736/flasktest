@@ -1,4 +1,5 @@
 import imp
+# import importlib
 from migrate.versioning import api
 from app import db
 from config import SQLALCHEMY_MIGRATE_REPO
@@ -7,6 +8,10 @@ from config import SQLALCHEMY_DATABASE_URI
 v = api.db_version(SQLALCHEMY_DATABASE_URI, SQLALCHEMY_MIGRATE_REPO)
 migration = SQLALCHEMY_MIGRATE_REPO + ('/versions/%03d_migration.py' % (v + 1))
 tmp_module = imp.new_module('old_model')
+# module_spec = importlib.abc.Loader.create_module(None)
+# tmp_module = importlib.util.module_from_spec(module_spec)
+# module_spec = importlib.util.find_spec('old_model')
+# tmp_module = importlib.util.module_from_spec(module_spec)
 old_model = api.create_model(SQLALCHEMY_DATABASE_URI, SQLALCHEMY_MIGRATE_REPO)
 exec(old_model, tmp_module.__dict__)
 

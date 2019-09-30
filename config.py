@@ -2,7 +2,9 @@ import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 # print('basedir: ', basedir)
 
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
+SQLALCHEMY_DATABASE_URI = ('sqlite:///' + os.path.join(basedir, 'app.db') +
+                           '?check_same_thread=False')
+
 # SQLALCHEMY_DATABASE_URI = 'sqlite+pysqlite:///' + os.path.join(basedir)
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 # SQLALCHEMY_MIGRATE_REPO = 'db_repository'
